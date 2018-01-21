@@ -90,9 +90,12 @@ class SecondPage extends React.Component {
       window.currentEvents.push(this.state.meetup);
     }
     errorHandler () {
-      this.setState({zipcodeAsker: (<input id="ourZip" placeholder="zipcode" value={this.state.zipcodes} onChange={this.getZipcode}></input>)});
-      this.setState({zipcodebutton: (<button id="meetupRequest" onClick={this.getMeetups}>Find MeetUps</button>)});
-    };
+        var usersZip = prompt('What is your zipcode?');
+        this.setState({zipcode: usersZip});
+        this.getMeetups();
+        // this.setState({zipcodeAsker: (<input id="ourZip" placeholder="What is your zipcode?" value={this.state.zipcodes} onChange={this.getZipcode}></input>)});
+        // this.setState({zipcodebutton: ( <RaisedButton className="meetupRequest" label="Search" onClick={this.getMeetups}></RaisedButton>)});//<button id="meetupRequest" onClick={this.getMeetups}>Find MeetUps</button>)});
+      };
     fetchProfileInfo() {
       $.ajax({
       url: '/users',
@@ -174,6 +177,7 @@ class SecondPage extends React.Component {
     });
     ;
   }
+
   render() {
     return (
       <MuiThemeProvider>
@@ -185,10 +189,11 @@ class SecondPage extends React.Component {
       <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
       <FlatButton ><Link to={{pathname:'/profile'}}>Profile</Link></FlatButton>
       </AppBar>
+      <div className="secondBar" style={{display: 'flex'}}>
+      <Search categories={this.state.categories} handleSearch={this.getMeetupsByCategory}/>
+      </div>
       </div>
       {this.state.displayCard ? <ProfileCard profile={this.state.profile}/> : null}
-      <div className="askForZipCode">{this.state.zipcodeAsker}</div>
-      <div>{this.state.zipcodebutton}</div>
       <div className="map">
       <div>
        <MapContainer meetups={this.state.events} seeMore={this.seeMore}
@@ -200,7 +205,6 @@ class SecondPage extends React.Component {
       </div>
       </div>
       <div className="list">
-      <Search categories={this.state.categories} handleSearch={this.getMeetupsByCategory}/>
       <MeetUpList events={this.state.events} seeMore={this.seeMore}/>
       </div>
       </div>

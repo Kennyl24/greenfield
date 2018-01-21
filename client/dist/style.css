@@ -24,7 +24,8 @@ button {
   margin: auto;
   display: block;
 }
-topbar {
+
+.topbar {
   top: 0px;
   padding-top: 5px;
   padding-bottom: 18px;
@@ -42,12 +43,6 @@ h1 {
   margin-bottom: auto;
   bottom: 0px;
   font-weight: 300;
-}
-h10 {
- top: 0px;
- background: #f47023;
- margin-bottom: auto;
- bottom: 0px;
 }
 li {
   padding: 5px;
@@ -147,6 +142,11 @@ h2 {
     text-align: center;
     margin-top: 0px;
 }
+
+.mui--appbar-height {
+  background: #2196F3 ;
+  position: absolute;
+}
 .seeMore {
     background: #fff;
     float: left;
@@ -172,4 +172,30 @@ h2 {
 .title{
   color: grey,
   font-size: 18px
+}
+
+.category, .radius, .calendar, .searchButton {
+  display: inline-block;
+  display: absolute;
+  margin-top: 0px;
+}
+
+.category {
+  margin-left: 600px;
+}
+
+.secondBar {
+  background: #2196F3;
+}
+
+.calendar {
+  position: absolute;
+  left: 900px;
+  top: 60px;
+}
+
+.searchButton {
+  position: absolute;
+  left: 1160px;
+  top: 65px;
 }

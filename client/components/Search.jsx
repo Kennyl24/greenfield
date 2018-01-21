@@ -87,7 +87,7 @@ class Search extends React.Component {
   render() {
     let categories = this.props.categories;
     return(
-      <div>
+      <div classname="secondBar">
         <span className="category">
         <DropDownMenu
           value={this.state.categoryMenuItem}
@@ -101,7 +101,7 @@ class Search extends React.Component {
         })}
         </DropDownMenu>
         </span>
-        <div className="radius">
+        <span className="radius">
           <DropDownMenu
             value={this.state.radiusItem}
             onChange={this.handleRadiusChange}
@@ -113,7 +113,7 @@ class Search extends React.Component {
             <MenuItem primaryText="10 miles" value={4} key={2}/>
             <MenuItem primaryText="25 miles" value={5} key={3}/>
           </DropDownMenu>
-        </div>
+        </span>
         <span className="calendar">
           <DatePicker
             onChange={this.handleDateChange}
@@ -122,7 +122,7 @@ class Search extends React.Component {
           />
         </span>
         <span>
-          <RaisedButton label="Search" onClick={this.search}/>
+          <RaisedButton className="searchButton" label="Search" onClick={this.search}/>
         </span>
       </div>
     );
