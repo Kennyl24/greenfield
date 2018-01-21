@@ -59,9 +59,9 @@ class SecondPage extends React.Component {
       this.getMeetupsByCategory = this.getMeetupsByCategory.bind(this);
     }
     strip(html) {
-         var tmp = document.createElement("DIV");
-         tmp.innerHTML = html;
-         return tmp.textContent;
+      var tmp = document.createElement("DIV");
+      tmp.innerHTML = html;
+      return tmp.textContent;
     }
     seeMore(marker) {
       this.state.events.map((event) => {
@@ -78,21 +78,21 @@ class SecondPage extends React.Component {
       });
     }
     weKnowTheLocation (pos) {
-        var crd = pos.coords;
-        var thisLat = crd.latitude;
-        var thisLon = crd.longitude;
-        this.setState({lat: thisLat});
-        this.setState({lon: thisLon});
-        navigator.geolocation.clearWatch(this.id);
-        this.getMeetups();
+      var crd = pos.coords;
+      var thisLat = crd.latitude;
+      var thisLon = crd.longitude;
+      this.setState({lat: thisLat});
+      this.setState({lon: thisLon});
+      navigator.geolocation.clearWatch(this.id);
+      this.getMeetups();
     };
     saveEvent() {
       window.currentEvents.push(this.state.meetup);
     }
     errorHandler () {
-        this.setState({zipcodeAsker: (<input id="ourZip" placeholder="zipcode" value={this.state.zipcodes} onChange={this.getZipcode}></input>)});
-        this.setState({zipcodebutton: (<button id="meetupRequest" onClick={this.getMeetups}>Find MeetUps</button>)});
-      };
+      this.setState({zipcodeAsker: (<input id="ourZip" placeholder="zipcode" value={this.state.zipcodes} onChange={this.getZipcode}></input>)});
+      this.setState({zipcodebutton: (<button id="meetupRequest" onClick={this.getMeetups}>Find MeetUps</button>)});
+    };
     fetchProfileInfo() {
       $.ajax({
       url: '/users',
@@ -145,6 +145,8 @@ class SecondPage extends React.Component {
        meetups = JSON.parse(meetups);
        var categories = data.categories;
        this.setState({
+         lat: meetups.city.lat,
+         lon: meetups.city.lon,
          location: meetups.city,
          events: meetups.events,
          categories: categories

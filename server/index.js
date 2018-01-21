@@ -121,8 +121,7 @@ app.get('/meetups', function(req, res){
        if (error) {
          res.status(500).json(error);
        }
-       // console.log('categories ',categories.results);
-       res.send({meetups: meetups, categories: categories.results});//meetups);
+       res.send({meetups: meetups, categories: categories.results});
      });
     });
   } else {
@@ -130,7 +129,7 @@ app.get('/meetups', function(req, res){
        if (error) {
          res.status(500).json(error);
        }
-       res.send({meetups: meetups, categories: categories.results});//meetups);
+       res.send({meetups: meetups, categories: categories.results});
      });
    };
   });
