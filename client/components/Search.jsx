@@ -87,7 +87,7 @@ class Search extends React.Component {
   render() {
     let categories = this.props.categories;
     return(
-      <div classname="secondBar">
+      <div className="secondBar">
         <span className="category">
         <DropDownMenu
           value={this.state.categoryMenuItem}
