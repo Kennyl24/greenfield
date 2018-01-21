@@ -6,10 +6,10 @@
   "license": "Tepig",
   "main": "index.js",
   "engines": {
-    "node": ">=6.4.0"
+    "node": "8.4.9"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
     "react-dev": "webpack -d --watch",
     "build": "babel input.js"
   },
