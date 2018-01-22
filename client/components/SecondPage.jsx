@@ -195,7 +195,7 @@ class SecondPage extends React.Component {
       <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
       <FlatButton ><Link to={{pathname:'/profile'}}>Profile</Link></FlatButton>
       </AppBar>
-      <div className="secondBar" style={{display: 'flex'}}>
+      <div className="secondBar">
       <Search categories={this.state.categories} handleSearch={this.getMeetupsByCategory}/>
       </div>
       </div>

@@ -1,44 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Login from './Login.jsx';
-import $ from 'jquery';
-import { Link } from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/flatButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router-dom';
+import TextField from 'material-ui/TextField';
 class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: ''
-    }
-    this.onChange = this.onChange.bind(this);
-
+constructor(props){
+  super(props);
+  this.state={
+  username:'',
+  password:''
   }
-  onChange(e){
-        const state = this.state
-        state[e.target.name] = e.target.value;
-        this.setState(state);
-  }
-  render() {
-    const { username, password} = this.state;
+ }
+render() {
     return (
-      <MuiThemeProvider>
       <div>
-      <AppBar title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
+        <MuiThemeProvider>
+          <div>
+          <AppBar title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
+      <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>                                                                                                                                                                                                                         <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
+      <FlatButton ><Link to={{pathname:'/profile'}}>Profile</Link></FlatButton>
       </AppBar>
-      <FlatButton fullWidth={true}style={{textDecoration: 'underline'}}><Link to={{pathname:'/signup'}}>No account? Sign up here</Link></FlatButton>
-      <FlatButton fullWidth={true}style={{textDecoration: 'underline'}}><Link to={{pathname:'/home'}}>I don't wanna</Link></FlatButton>
-      <form action='/auth' method='post'>
-        <input placeholder="Enter your username" type="text" name="username" value={username} onChange={this.onChange} />
-        <input placeholder="Enter your password" type="password" name="password" value={password} onChange={this.onChange} />
-        <br />
-        <button>Login!</button>
-      </form>
+           <TextField 
+             hintText="Enter your Username"
+             floatingLabelText="Username"
+             onChange = {(event,newValue) => this.setState({username:newValue})}
+             />
+           <br/>
+             <TextField
+               type="password"
+               hintText="Enter your Password"
+               floatingLabelText="Password"
+               onChange = {(event,newValue) => this.setState({password:newValue})}
+               />
+             <br/>
+             <RaisedButton label="Submit" style={{backgroundColor: '#f47023'}} onClick={(event) => this.handleClick(event)}/>
+         </div>
+         </MuiThemeProvider>
       </div>
-      </MuiThemeProvider>
     );
   }
 }
+const style = {
+ margin: 15,
+ color: 'black'
+};
 export default LoginForm;
