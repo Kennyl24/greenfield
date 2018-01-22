@@ -3,11 +3,9 @@ body {
   margin: 0px;
   padding: 0px;
   top: 0px;
-  background: #fefefe;
+  background: #f8f5f1;
 }
-.listEntryClass {
-  font-weight: 600;
-}
+
 .descriptionClass {
   font-weight: 300;
 }
@@ -53,9 +51,10 @@ li:hover {
   text-decoration: underline;
 }
 .cardTest {
-  max-height: 100px;
+  background-color: #f8f5f1;
   max-width: : 50%;
   padding: 5px;
+  float: right;
 }
 .flatButton {
   text-decoration: underline;
@@ -91,8 +90,7 @@ ul {
   margin-top: 0px;
   display: inline-block;
   list-style-type: none;
-  background: #fefefe;
-  width: 100%;
+  background: #f8f5f1;
 /*  padding-left: 40px;
   padding-right: 67px;
   padding-top: 30px;*/
@@ -103,21 +101,21 @@ ul {
   top: 0px;
   /*margin-top: auto;*/
   /*display: inline-block;*/
-  float: right;
-  width: 22.5%;
-  height: 398px;
-  margin-right: 60px;
-  padding-right: 30px;
+  float: left;
+  width: 50%;
+  /*height: 185px;*/
+ /* margin-right: 60px;
+  padding-right: 30px;*/
 }
 .map {
-  top: 0px;
-  background: #fefefe;
+  top: 50px;
+  background: #f8f5f1;
   display: inline-block;
 /*  padding: 175px;
   padding-bottom: 249px;
   padding-top: 249px;*/
-  width: 40%;
-  height: 600px;
+  width: 100%;
+  height: 500px
   /*height: 60%;*/
 }
 h3 {
@@ -143,10 +141,10 @@ h2 {
     margin-top: 0px;
 }
 
-.mui--appbar-height {
+/*.mui--appbar-height {
   background: #2196F3 ;
   position: absolute;
-}
+}*/
 .seeMore {
     background: #fff;
     float: left;
@@ -191,11 +189,11 @@ h2 {
 .calendar {
   position: absolute;
   left: 900px;
-  top: 60px;
+  top: 70px;
 }
 
 .searchButton {
   position: absolute;
   left: 1160px;
-  top: 65px;
+  top: 75px;
 }

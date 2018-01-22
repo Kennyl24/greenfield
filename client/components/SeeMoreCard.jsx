@@ -19,20 +19,12 @@ class SeeMoreCard extends React.Component {
       showText: true,
     }
     this.handleClicker = this.handleClicker.bind(this);
-    this.checkTime = this.checkTime.bind(this);
   }
   handleClicker() {
     this.setState({
       showDescription: !this.state.showDescription,
       showText: !this.state.showText
     })
-  }
-  checkTime () {
-    if(this.props.local_time){
-      return true;
-    } else{
-      return false;
-    }
   }
   render() {
    return (

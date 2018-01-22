@@ -8,13 +8,14 @@ import Profile from './Profile.jsx';
 import Search from './Search.jsx';
 import ProfileCard from './ProfileCard.jsx';
 import SeeMoreCard from './SeeMoreCard.jsx';
+import SimpleMediaCard from './SimpleMediaCard.jsx';
 import LoginForm from './LoginForm.jsx';
 import SignUpForm from './SignUpForm.jsx';
 import moment from 'moment';
 import MapContainer from '../components/MapContainer.jsx';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/flatbutton';
+import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
@@ -64,8 +65,11 @@ class SecondPage extends React.Component {
       return tmp.textContent;
     }
     seeMore(marker) {
+      console.log('I am in here at least', marker)
       this.state.events.map((event) => {
+        console.log(event)
         if(event.name === marker){
+          console.log('in here tooo')
           this.setState({
             meetup: event,
             description: this.strip(event.description),
@@ -87,6 +91,7 @@ class SecondPage extends React.Component {
       this.getMeetups();
     };
     saveEvent() {
+      console.log('saving');
       window.currentEvents.push(this.state.meetup);
     }
     errorHandler () {
@@ -138,6 +143,7 @@ class SecondPage extends React.Component {
        contentType: 'application/json',
        data: {zipcode : this.state.zipcode, lat: this.state.lat, lon: this.state.lon},
        success: (data) => {
+        console.log(JSON.parse(data.meetups));
         this.setState({meetups : JSON.parse(data.meetups)});
        },
        error: (err) => {
@@ -183,9 +189,9 @@ class SecondPage extends React.Component {
       <MuiThemeProvider>
       <div>
       <div>
+      <div>
       <AppBar title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
-      <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>
-      <FlatButton ><Link to={{pathname:'/create'}}>Create Event</Link></FlatButton>
+      <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>                                                                                                                                                                                                                         <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
       <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
       <FlatButton ><Link to={{pathname:'/profile'}}>Profile</Link></FlatButton>
       </AppBar>
@@ -193,19 +199,23 @@ class SecondPage extends React.Component {
       <Search categories={this.state.categories} handleSearch={this.getMeetupsByCategory}/>
       </div>
       </div>
+      </div>
       {this.state.displayCard ? <ProfileCard profile={this.state.profile}/> : null}
       <div className="map">
       <div>
+      
        <MapContainer meetups={this.state.events} seeMore={this.seeMore}
        initialLocation={{lat: this.state.lat, lng: this.state.lon}}
        />
       </div>
-      <div className ="cardTest">
+      </div>
+      <div>
+      <div className ="cardTest" style={{backgroundColor: '#f8f5f1'}}>
       {this.state.displaySeeMore ? <SeeMoreCard saveEvent={this.saveEvent} closeButton={this.closeButton}meetup={this.state.meetup} group={this.state.group} photo={this.state.photo} date={this.state.date} description={this.state.description}/> : null}
       </div>
       </div>
       <div className="list">
-      <MeetUpList events={this.state.events} seeMore={this.seeMore}/>
+      <MeetUpList events={this.state.events} saveEvent={this.saveEvent} closeButton={this.closeButton} seeMore={this.seeMore}/>
       </div>
       </div>
       </MuiThemeProvider>
@@ -214,3 +224,4 @@ class SecondPage extends React.Component {
 }
 window.currentEvents = [];
 export default SecondPage;
+

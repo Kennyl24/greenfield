@@ -116,7 +116,7 @@ class Profile extends React.Component {
   <FlatButton ><div to={{pathname:'/profile'}} onClick={this.onProfileClick}>Profile</div></FlatButton>
   </AppBar>
   <div className="profile">
-  <img src="http://www.telegraph.co.uk/content/dam/men/2016/05/24/Untitled-1_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpg?imwidth=450" alt="John" style={{'margin': '0 auto', 'width':'150px', 'height': '100px'}}/>
+  <img src="https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864--facebook-profile-profile-pictures.jpg" alt="John" style={{'margin': '0 auto', 'width':'150px', 'height': '100px'}}/>
   <p className="title">{this.state.profile.username}</p>
   <p>{this.state.profile.location}</p>
   <p>{this.state.profile.age}</p>
@@ -127,10 +127,10 @@ class Profile extends React.Component {
   {this.state.displaySeeMore ? <SeeMoreCard closeButton={this.closeButton}meetup={this.state.meetup} group={this.state.group} photo={this.state.photo} date={this.state.date} description={this.state.description}/> : null}
   </div>
   </div>
-  <div className="list">
+  <div className="list" style={{float: 'right'}}>
   {this.state.eventData.length > 0 ? <CreatedList createdEvents={this.state.eventData}/> : null}
   </div>
-  <div className="list">
+  <div className="list" style={{float: 'right'}}>
   {this.state.myEvents.length > 0 ? <SavedList myEvents={this.state.myEvents} seeMore={this.seeMore}/> : null}
   </div>
   <div>

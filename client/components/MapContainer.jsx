@@ -6,7 +6,7 @@ import config from '../../config.js';
 class MapContainer extends React.Component {
   render() {
     return (
-      <div className="MapContainer">
+      <div>
         <MeetupMap
           google={this.props.google}
           initialCenter = {this.props.initialLocation}

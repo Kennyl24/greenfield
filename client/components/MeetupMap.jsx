@@ -38,7 +38,7 @@ class MeetupMap extends React.Component {
           content: `<h6>${meetup.name}</h6>`,
         });
         marker.addListener('click', () => {
-          // this.props.seeMore(marker.title);
+          this.props.seeMore(marker.title);
           infowindow.open(this.map, marker);
           setTimeout(() => { infowindow.close(); }, 5000);
         });
@@ -53,7 +53,7 @@ class MeetupMap extends React.Component {
 
   render() {
     const style = {
-      width: '65vw',
+      width: '100vw',
       height: '65vh'
     }
     return (

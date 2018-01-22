@@ -217,7 +217,7 @@ app.get('/events', function(req,res,next){
 app.post('/logout', function(req, res){
   req.session.destroy();
   req.logout();
-  res.send({redirect: '/'});
+  res.({redirect: '/'});
 });
 const getMeetupsBySearchFields = (searchOptions, callback) => {
   let options = {
