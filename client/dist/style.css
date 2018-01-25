@@ -51,10 +51,14 @@ li:hover {
   text-decoration: underline;
 }
 .cardTest {
+  margin-left: 400;
   background-color: #f8f5f1;
   max-width: : 50%;
   padding: 5px;
   float: right;
+  position: absolute;
+  max-height: 200px;
+  z-index: 9999;
 }
 .flatButton {
   text-decoration: underline;
@@ -96,21 +100,22 @@ ul {
   padding-top: 30px;*/
   overflow: auto;
   height: 165%;
+  max-width: 45%;
 }
 .list {
-  top: 0px;
+
   /*margin-top: auto;*/
   /*display: inline-block;*/
   float: left;
-  width: 50%;
   /*height: 185px;*/
  /* margin-right: 60px;
   padding-right: 30px;*/
 }
 .map {
-  top: 50px;
+  top: 125px;
   background: #f8f5f1;
   display: inline-block;
+  position: absolute;
 /*  padding: 175px;
   padding-bottom: 249px;
   padding-top: 249px;*/
@@ -176,24 +181,30 @@ h2 {
   display: inline-block;
   display: absolute;
   margin-top: 0px;
+
 }
 
 .category {
   margin-left: 600px;
+  background: #f47023;
 }
 
 .secondBar {
   background: #f47023;
+  position: absolute;
+  width: 100%;
 }
 
 .calendar {
-  position: absolute;
+  position: fixed;
   left: 900px;
+  background: #f47023;
   top: 70px;
 }
 
 .searchButton {
-  position: absolute;
+  position: fixed;
+  background: #f47023;
   left: 1160px;
-  top: 75px;
+  top: 70px;
 }

@@ -10,6 +10,7 @@ import ProfileCard from './ProfileCard.jsx';
 import SeeMoreCard from './SeeMoreCard.jsx';
 import SimpleMediaCard from './SimpleMediaCard.jsx';
 import LoginForm from './LoginForm.jsx';
+import GuttersGrid from './GuttersGrid.jsx';
 import SignUpForm from './SignUpForm.jsx';
 import moment from 'moment';
 import MapContainer from '../components/MapContainer.jsx';
@@ -17,7 +18,7 @@ import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {BrowserRouter, Router, Route, browserHistory, Switch, IndexRoute} from 'react-router-dom';
 const path = require('path');
 class SecondPage extends React.Component {
@@ -190,10 +191,10 @@ class SecondPage extends React.Component {
       <div>
       <div>
       <div>
-      <AppBar title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
-      <FlatButton primary={true}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>                                                                                                                                                                                                                         <FlatButton ><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
-      <FlatButton ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
-      <FlatButton ><Link to={{pathname:'/profile'}}>Profile</Link></FlatButton>
+      <AppBar style={{position:'fixed'}} title={<span style={{backgroundColor: '#f47023'}}><img src='../minglr.gif'/></span>}showMenuIconButton={false} style={{backgroundColor: '#f47023'}}>
+      <FlatButton primary={true} style={{padding: '10px', minWidth: 'none'}}><Link to={{pathname:'/home'}}>Home</Link></FlatButton>                                                                                                                                                                                                                         <FlatButton style={{padding: '10px', minWidth: 'none'}}><Link to={{pathname:'/create'}}>Create event</Link></FlatButton>
+      <FlatButton style={{padding: '10px', minWidth: 'none'}} ><Link to={{pathname:'/logout'}}>Logout</Link></FlatButton>
+      <FlatButton style={{padding: '10px', minWidth: 'none'}}><Link to={{pathname:'/profile'}}>Profile</Link></FlatButton>
       </AppBar>
       <div className="secondBar">
       <Search categories={this.state.categories} handleSearch={this.getMeetupsByCategory}/>
@@ -202,20 +203,21 @@ class SecondPage extends React.Component {
       </div>
       {this.state.displayCard ? <ProfileCard profile={this.state.profile}/> : null}
       <div className="map">
+       <div className ="cardTest" style={{backgroundColor: '#f8f5f1'}}>
+      {this.state.displaySeeMore ? <SeeMoreCard saveEvent={this.saveEvent} closeButton={this.closeButton}meetup={this.state.meetup} group={this.state.group} photo={this.state.photo} date={this.state.date} description={this.state.description}/> : null}
+      </div>
       <div>
-      
+        
        <MapContainer meetups={this.state.events} seeMore={this.seeMore}
        initialLocation={{lat: this.state.lat, lng: this.state.lon}}
        />
+
       </div>
       </div>
       <div>
-      <div className ="cardTest" style={{backgroundColor: '#f8f5f1'}}>
-      {this.state.displaySeeMore ? <SeeMoreCard saveEvent={this.saveEvent} closeButton={this.closeButton}meetup={this.state.meetup} group={this.state.group} photo={this.state.photo} date={this.state.date} description={this.state.description}/> : null}
       </div>
-      </div>
-      <div className="list">
-      <MeetUpList events={this.state.events} saveEvent={this.saveEvent} closeButton={this.closeButton} seeMore={this.seeMore}/>
+      <div>
+      <GuttersGrid style={{marginTop: '600px', position: 'relative'}}events={this.state.events} saveEvent={this.saveEvent} closeButton={this.closeButton} seeMore={this.seeMore}/>
       </div>
       </div>
       </MuiThemeProvider>
@@ -224,4 +226,5 @@ class SecondPage extends React.Component {
 }
 window.currentEvents = [];
 export default SecondPage;
+
 

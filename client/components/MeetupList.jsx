@@ -5,7 +5,7 @@ import FirstPage from './FirstPage.jsx';
 const MeetUpList = function(props)  {
   return(
     <ul>
-      {props.events.length ? props.events.map((event) => <SimpleMediaCard event={event} seeMore={props.seeMore} key={event.id}/>) : null}
+      {props.events.length ? props.events.map((event) => <SimpleMediaCard event={event} saveEvent={props.saveEvent} seeMore={props.seeMore} key={event.id}/>) : null}
     </ul>
   );
 

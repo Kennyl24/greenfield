@@ -9,6 +9,7 @@ import Button from 'material-ui/FlatButton';
 import CardHeader from 'material-ui/card/cardHeader';
 import CardMedia from 'material-ui/card/cardMedia';
 import CardTitle from 'material-ui/card/cardTitle';
+import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/flatButton';
 import CardText from 'material-ui/card/cardText';
 class SeeMoreCard extends React.Component {
@@ -30,11 +31,7 @@ class SeeMoreCard extends React.Component {
    return (
   <div>
   <Card style={{backgroundColor: '#f8f5f1'}}>
-  <CardMedia>
-  <div>
-  <img src={this.props.photo.photo_link ? this.props.photo.photo_link : this.props.meetup.photo_url} alt="" style={{alignSelf: 'center', 'width':'100%', 'height': '175px'}} />
-  </div>
-  </CardMedia>
+  <IconButton>X</IconButton>
   <CardTitle style ={{fontSize: '18px', textDecoration: 'bold'}}>
   {this.props.meetup.name}
   </CardTitle>

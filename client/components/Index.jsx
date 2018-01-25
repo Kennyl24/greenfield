@@ -9,6 +9,7 @@ import CreateEvent from './CreateEvent.jsx';
 import Login from './Login.jsx';
 import Logout from './Logout.jsx';
 import Profile from './Profile.jsx';
+import GuttersGrid from './GuttersGrid.jsx';
 ReactDOM.render(
       <Router>
       <Switch>
