@@ -1,57 +1,64 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 class MeetupMap extends React.Component {
-
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.google !== this.props.google || prevProps.meetups !== this.props.meetups) {
       this.loadMap();
     }
   }
-
   loadMap() {
     if (this.props && this.props.google) {
-      const {google} = this.props;
+      const { google } = this.props;
       const maps = google.maps;
       const mapRef = this.refs.map;
       const node = ReactDOM.findDOMNode(mapRef);
       let {zoom} = this.props;
       const {lat, lng} = this.props.initialCenter;
-      // console.log('lat ', lat);
-      // console.log('lng ', lng);
       const center = new maps.LatLng(lat, lng);
       const mapConfig = Object.assign({}, {
         center: center,
         zoom: zoom
       })
       this.map = new maps.Map(node, mapConfig);
-
-      this.props.meetups.map((meetup, index) => {
-
+      let markers = [];
+      let latLng;
+      this.props.meetups.map((meetup) => {
+        if (!meetup.venue) {
+          latLng = new google.maps.LatLng(meetup.group.lat, meetup.group.lon);
+        } else {
+          latLng = new google.maps.LatLng(meetup.venue.lat, meetup.venue.lon);
+        }
         const marker = new google.maps.Marker({
-          position: {lat: meetup.group.lat, lng: meetup.group.lon},
-          map: this.map,
-          title: meetup.name,
+          position: latLng,
+          title: meetup.name
         });
-
+        markers.push(marker);
         const infowindow = new google.maps.InfoWindow({
-          content: `<h6>${meetup.name}</h6>`
+          content: `<h6>${meetup.name}</h6>`,
         });
         marker.addListener('click', () => {
+          this.props.seeMore(marker.title);
+          this.props.highLigh(marker.title);
           infowindow.open(this.map, marker);
           setTimeout(() => { infowindow.close(); }, 5000);
         });
       });
+      if (this.map) {
+        markers.forEach((marker) => {
+          marker.setMap(this.map);
+        });
+      }
     }
   }
 
   render() {
     const style = {
-      width: '65vw',
-      height: '65vh'
-    }
+      width: '100vw',
+      height: '65vh',
+    };
     return (
-      <div ref='map' style={style}>
+      <div ref="map" style={style}>
         Loading map...
       </div>
     );

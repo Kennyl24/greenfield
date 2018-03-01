@@ -1,44 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Login from './Login.jsx';
-import $ from 'jquery';
+
 import { Link } from 'react-router-dom';
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
-      password: ''
-    }
+      password: '',
+    };
     this.onChange = this.onChange.bind(this);
-
   }
-  onChange(e){
-        const state = this.state
-        state[e.target.name] = e.target.value;
-        this.setState(state);
+  onChange(e) {
+    const state = this.state;
+    state[e.target.name] = e.target.value;
+    this.setState(state);
   }
   render() {
-    const { username, password} = this.state;
+    const { username, password } = this.state;
     return (
-      <div>
-      <h1 style={{display: 'flex'}}>
-      <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
-      <Link className="btn" to={{pathname:'/'}}>home</Link>
-      <Link className="btn" to={{pathname:'/login'}}>login</Link>
-      <Link className="btn" to={{pathname:'/signup'}}>signup</Link>
-      <Link className="btn" to={{pathname:'/profile'}}>My Profile</Link>
-      </h1>
-      <form action='/auth' method='post'>
-        <label htmlFor="username">Enter your username</label>
-        <input type="text" name="username" value={username} onChange={this.onChange} />
-        <label htmlFor="password">Enter your password</label>
-        <input type="password" name="password" value={password} onChange={this.onChange} />
-        <button>Login!</button>
-      </form>
-      <Link className="btn" to={{pathname:'/signup'}}>No account? Sign up here</Link>
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <AppBar title={<span style={{ backgroundColor: '#f47023' }}><img src="../minglr.gif" alt="" /></span>} showMenuIconButton={false} style={{ backgroundColor: '#f47023' }} />
+          <FlatButton fullWidth={true} style={{ textDecoration: 'underline' }}><Link to={{ pathname: '/signup' }}>No account? Sign up here</Link></FlatButton>
+          <FlatButton fullWidth={true} style={{ textDecoration: 'underline' }}><Link to={{ pathname: '/home' }}>I don't want to</Link></FlatButton>
+          <form action="/auth" method="post">
+            <input placeholder="Enter your username" type="text" name="username" value={username} onChange={this.onChange} />
+            <input placeholder="Enter your password" type="password" name="password" value={password} onChange={this.onChange} />
+            <br />
+            <button>Login!</button>
+          </form>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

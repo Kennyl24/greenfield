@@ -1,29 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FirstPage from './FirstPage.jsx';
-import SecondPage from './FirstPage.jsx';
-import Index from './Index.jsx';
 import { Link } from 'react-router-dom';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: []
-    }
-  }
-  render() {
-    return (
-      <div>
-      <h1 style={{display: 'flex'}}>
-      <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
-      <Link className="btn" to={{pathname:'/'}}>home</Link>
-      <Link className="btn" to={{pathname:'/login'}}>login</Link>
-      <Link className="btn" to={{pathname:'/signup'}}>signup</Link>
-      </h1>
-      </div>
-    );
-  }
-}
+import FlatButton from 'material-ui/FlatButton';
+import AppBar from 'material-ui/AppBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+const Login = () => (
+  <MuiThemeProvider>
+    <div>
+      <AppBar title={<span style={{ backgroundColor: '#f47023' }}>MINGLR</span>}showMenuIconButton={false} style={{ backgroundColor: '#f47023' }}>
+        <FlatButton primary={true}><Link to={{ pathname:'/home' }}>Home</Link></FlatButton>
+        <FlatButton ><Link to={{ pathname: '/create' }}>Create event</Link></FlatButton>
+        <FlatButton ><Link to={{ pathname: '/logout' }}>Logout</Link></FlatButton>
+        <FlatButton ><Link to={{ pathname: '/profile' }}>Profile</Link></FlatButton>
+      </AppBar>
+    </div>
+  </MuiThemeProvider>
+);
 export default Login;

@@ -1,72 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../components/Index.jsx';
+import FlatButton from 'material-ui/FlatButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import Link from 'react-router-dom';
 import SignUpFormSimple from '../components/SignUpFormSimple.jsx';
 import SignUpFormExtended from '../components/SignUpFormExtended.jsx';
-import $ from 'jquery';
-import { Link } from 'react-router-dom';
+
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showForm: false,
-      showSimple: false,
-      clickableSimple: true,
-      clickableExtended: true,
-    }
+      showExtended: false,
+      showSimple: true,
+      displayText: true,
+    };
     this.handleClick = this.handleClick.bind(this);
-    this.handleClickTwo = this.handleClickTwo.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const data = new FormData(event.target);
-    this.fetch(data)
-  }
-  fetch(data){
-    $.ajax({
-    url: '/signup',
-    method: 'POST',
-    body: data,
-    success: () => {
-      console.log('hello')
-    },
-    error: (error) => {
-      console.log('fail safe', error)
-    }
-  });
   }
   handleClick() {
     this.setState({
-      showExtended: true,
-      clickableSimple: false,
-      clickableExtended: false
-    })
-  }
-  handleClickTwo() {
-    this.setState({
-      showSimple: true,
-      clickableSimple: false,
-      clickableExtended: false
-    })
+      showSimple: !this.state.showSimple,
+      showExtended: !this.state.showExtended,
+      displayText: !this.state.displayText,
+    });
   }
   render() {
     return (
-      <div>
-      <h1 style={{display: 'flex'}}>
-      <img src='https://n6-img-fp.akamaized.net/free-icon/telegram-logo_318-102687.jpg?size=338c&ext=jpg' width="30" height="50"/>
-      <text style={{display: 'flex', flex: 1, textAlign: 'center', alignSelf: 'center', flexDirection: 'row', justifyContent: 'center'}}>our app</text>
-      <Link className="btn" to={{pathname:'/'}}>home</Link>
-      <Link className="btn" to={{pathname:'/login'}}>login</Link>
-      <Link className="btn" to={{pathname:'/signup'}}>signup</Link>
-      <Link className="btn" to={{pathname:'/profile'}}>My Profile</Link>
-      </h1>
-      <button className="btn" onClick={this.state.clickableSimple ? this.handleClickTwo : null}>Simple Signup </button>
-      <button className="btn" onClick={this.state.clickableExtended ? this.handleClick: null}>Create a profile with it!</button>
-      {this.state.showExtended ? <SignUpFormExtended/>  : null}
-      {this.state.showSimple ? <SignUpFormSimple/> : null}
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <AppBar title={<span style={{ backgroundColor: '#f47023' }}><img src="../minglr.gif" alt="" /></span>}showMenuIconButton={false} style={{ backgroundColor: '#f47023' }} />
+          <FlatButton fullWidth={true} style={{ textDecoration: 'underline' }}><Link to={{ pathname: '/Login' }}>I have an account!</Link></FlatButton>
+          <FlatButton fullWidth={true} style={{ textDecoration: 'underline' }} onClick={this.handleClick}> {this.state.displayText ? 'Add more information' : 'Simple signup'}</FlatButton>
+          {this.state.showExtended ? <SignUpFormExtended /> : <SignUpFormSimple />}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

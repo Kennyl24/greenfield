@@ -5,9 +5,9 @@
 ## Team
 
   - Archana Nayak
-  - Kenneth Laprelle 
+  - Kenneth Laprelle
   - Thomas Eliot
-  - Victor Huynh
+  - Daphne Dang
 
 ## Table of Contents
 

@@ -1,23 +1,24 @@
 import React from 'react';
 import { GoogleApiWrapper } from 'google-maps-react';
 import MeetupMap from './MeetupMap.jsx';
+import config from '../../config.js';
 
-class MapContainer extends React.Component {
-  render() {
-    return (
-      <div className="MapContainer">
-        <MeetupMap
-          google={this.props.google}
-          initialCenter = {this.props.initialLocation}
-          zoom = {13}
-          meetups={this.props.meetsup}
-          {...this.props}/>
-      </div>
-    );
-  }
-}
+const MapContainer = (props) => {
+  return (
+    <div>
+      <MeetupMap
+        google={props.google}
+        initialCenter={props.initialLocation}
+        zoom={13}
+        meetups={props.meetups}
+        seeMore={props.seeMore}
+        {...props}
+      />
+    </div>
+  );
+};
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyChZPizXo_3sk70Cm4yveOd0YfQtuxc7As',
-  libraries:['places']
-})(MapContainer)
+  apiKey: config.GOOGLE_MAPS_API_KEY,
+  libraries: ['places'],
+})(MapContainer);

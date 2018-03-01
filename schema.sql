@@ -5,11 +5,13 @@ CREATE DATABASE meetup;
 DROP TABLE IF EXISTS account;
 CREATE TABLE account (
 	id SERIAL PRIMARY KEY,
+	name TEXT unique,
 	email TEXT unique,
 	username TEXT unique NOT NULL,
 	password TEXT NOT NULL,
 	created_on TIMESTAMP,
-	last_login TIMESTAMP
+	last_login TIMESTAMP, 
+
 );
 
 CREATE TABLE event_preferences (
