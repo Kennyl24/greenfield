@@ -9,13 +9,13 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate : moment(),
+      startDate: moment(),
       category: '',
       radius: '',
       time: '',
-      categoryId:'',
+      categoryId: '',
       categoryMenuItem: 1,
-      radiusItem: 1
+      radiusItem: 1,
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
@@ -27,7 +27,7 @@ class Search extends React.Component {
   componentDidMount() {
     this.setState({
       radius: this.radiusInMiles[0],
-      time: this.state.startDate.valueOf()
+      time: this.state.startDate.valueOf(),
     });
   }
 
@@ -35,19 +35,18 @@ class Search extends React.Component {
     if (this.props.categories !== nextProps.categories) {
       this.setState({
         category: nextProps.categories[0].name,
-        categoryId: nextProps.categories[0].id
+        categoryId: nextProps.categories[0].id,
       });
     }
   }
 
   handleDateChange(event, date) {
     this.setState({
-      startDate: date
+      startDate: date,
     });
-    this.setState(
-      {
-        startDate: date,
-        time: date.getTime()
+    this.setState({
+      startDate: date,
+      time: date.getTime(),
     });
   }
 
@@ -57,7 +56,7 @@ class Search extends React.Component {
         this.setState({
           category: category.name,
           categoryId: category.id,
-          categoryMenuItem: payload
+          categoryMenuItem: payload,
         });
       }
     });
@@ -68,38 +67,37 @@ class Search extends React.Component {
       if (key === index + 1) {
         this.setState({
           radius: distance,
-          radiusItem: payload
+          radiusItem: payload,
         });
       }
     });
   }
 
   search() {
-    var searchOptions = {
+    const searchOptions = {
       radius: this.state.radius,
       startDate: this.state.time,
       category: this.state.category,
-      categoryId: this.state.categoryId
+      categoryId: this.state.categoryId,
     };
     this.props.handleSearch(searchOptions);
   }
 
   render() {
-    let categories = this.props.categories;
-    return(
+    const categories = this.props.categories;
+    return (
       <div className="secondBar">
         <span className="category">
-        <DropDownMenu
-          value={this.state.categoryMenuItem}
-          onChange={this.handleCategoryChange}
-          // style={styles.customWidth}
-          autoWidth={true}
-        >
-        <MenuItem value={1} primaryText="Pick Topic"/>
-        {categories.map((category, index) => {
-          return <MenuItem primaryText={category.name} value={index + 2} key={category.id}/>
+          <DropDownMenu
+            value={this.state.categoryMenuItem}
+            onChange={this.handleCategoryChange}
+            autoWidth={true}
+          >
+            <MenuItem value={1} primaryText="Pick Topic" />
+            {categories.map((category, index) => {
+          return <MenuItem primaryText={category.name} value={index + 2} key={category.id} />;
         })}
-        </DropDownMenu>
+          </DropDownMenu>
         </span>
         <span className="radius">
           <DropDownMenu
@@ -107,22 +105,25 @@ class Search extends React.Component {
             onChange={this.handleRadiusChange}
             autoWidth={true}
           >
-            <MenuItem primaryText="Distance" value={1} key={-1}/>
-            <MenuItem primaryText="2 miles" value={2} key={0}/>
-            <MenuItem primaryText="5 miles" value={3} key={1}/>
-            <MenuItem primaryText="10 miles" value={4} key={2}/>
-            <MenuItem primaryText="25 miles" value={5} key={3}/>
+            <MenuItem primaryText="Distance" value={1} key={-1} />
+            <MenuItem primaryText="2 miles" value={2} key={0} />
+            <MenuItem primaryText="5 miles" value={3} key={1} />
+            <MenuItem primaryText="10 miles" value={4} key={2} />
+            <MenuItem primaryText="25 miles" value={5} key={3} />
           </DropDownMenu>
         </span>
-        <span className="calendar">
+        <span className="calendar" >
           <DatePicker
+            style={{
+              position: 'fixed',
+            }}
             onChange={this.handleDateChange}
             value={this.state.startDate}
             hintText="Look By Date"
           />
         </span>
         <span>
-          <RaisedButton className="searchButton" label="Search" onClick={this.search}/>
+          <RaisedButton className="searchButton" label="Search" onClick={this.search} />
         </span>
       </div>
     );

@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import SecondPage from './SecondPage.jsx';
+
 class MeetupMap extends React.Component {
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.google !== this.props.google || prevProps.meetups !== this.props.meetups) {
       this.loadMap();
     }
   }
   loadMap() {
     if (this.props && this.props.google) {
-      const {google} = this.props;
+      const { google } = this.props;
       const maps = google.maps;
       const mapRef = this.refs.map;
       const node = ReactDOM.findDOMNode(mapRef);
@@ -23,7 +23,7 @@ class MeetupMap extends React.Component {
       this.map = new maps.Map(node, mapConfig);
       let markers = [];
       let latLng;
-      this.props.meetups.map((meetup, index) => {
+      this.props.meetups.map((meetup) => {
         if (!meetup.venue) {
           latLng = new google.maps.LatLng(meetup.group.lat, meetup.group.lon);
         } else {
@@ -39,6 +39,7 @@ class MeetupMap extends React.Component {
         });
         marker.addListener('click', () => {
           this.props.seeMore(marker.title);
+          this.props.highLigh(marker.title);
           infowindow.open(this.map, marker);
           setTimeout(() => { infowindow.close(); }, 5000);
         });
@@ -54,10 +55,10 @@ class MeetupMap extends React.Component {
   render() {
     const style = {
       width: '100vw',
-      height: '65vh'
-    }
+      height: '65vh',
+    };
     return (
-      <div ref='map' style={style}>
+      <div ref="map" style={style}>
         Loading map...
       </div>
     );
